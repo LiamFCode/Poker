@@ -93,7 +93,9 @@ class FiveCardDraw:
             for j in range(i+1, 5):
                 if self.cards[i].value == self.cards[j].value:
                     pairs += 1
-        return pairs == 2
+        if pairs == 2:
+            return True
+        return False
     
     def has_three_of_a_kind(self):
         for i in range(5):
