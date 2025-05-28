@@ -22,25 +22,7 @@ class Card:
         else:
             rank = self.rank
         return str(rank) + self.suit
-    
-    def __eq__(self, other):
-        return self.rank == other.rank
-    
-    def __ne__(self, other):
-        return self.rank != other.rank
-    
-    def __lt__(self, other):
-        return self.rank < other.rank
-    
-    def __le__(self, other):
-        return self.rank <= other.rank
-    
-    def __gt__(self, other):
-        return self.rank > other.rank
-    
-    def __ge__(self, other):
-        return self.rank >= other.rank
-    
+
 class Deck:
     def __init__(cls):
         cls.deck = []
@@ -58,6 +40,7 @@ class Deck:
     def deal (cls):
         return cls.deck.pop(len(cls.deck) - 1)
 
+#Game Types
 class FiveCardDraw:
     def __init__(self, deck):
         self.cards = []
@@ -80,17 +63,44 @@ class FiveCardDraw:
             while len(self.cards) < 5:
                 self.cards.append(deck.deal())
 
+class TexasHoldEm:
+    def __init__(self, deck):
+        self.cards = []
+        for i in range(2):
+            self.cards.append(deck.deal())
+    
+    def __str__(self):
+        return ", ".join([str(card) for card in self.cards])  
+    
+    table = []
+    def  __str__(table):
+        return ", ".join([str(card) for card in table])
+
+    def flop (deck, table):
+        deck.pop(len(deck) - 1),
+        for i in range(3):
+            table.append(deck.deal())
+
+    def turn (deck, table):
+        deck.pop(len(deck) - 1),
+        table.append(deck.deal())
+
+    def river (deck, table):
+        deck.pop(len(deck) - 1),
+        table.append(deck.deal())
+
+# Hand Eval.
     def has_pair(self):
-        for i in range(5):
-            for j in range(i+1, 5):
+        for i in range(self.cards.len):
+            for j in range(i+1, self.cards.len):
                 if self.cards[i].value == self.cards[j].value:
                     return True
         return False
     
     def has_two_pair(self):
         pairs = 0
-        for i in range(5):
-            for j in range(i+1, 5):
+        for i in range(self.cards.len):
+            for j in range(i+1, self.cards.len):
                 if self.cards[i].value == self.cards[j].value:
                     pairs += 1
         if pairs == 2:
@@ -98,22 +108,22 @@ class FiveCardDraw:
         return False
     
     def has_three_of_a_kind(self):
-        for i in range(5):
-            for j in range(i+1, 5):
-                for k in range(j+1, 5):
+        for i in range(self.cards.len):
+            for j in range(i+1, self.cards.len):
+                for k in range(j+1, self.cards.len):
                     if self.cards[i].value == self.cards[j].value == self.cards[k].value:
                         return True
         return False
     
     def has_straight(self):
         self.cards.sort()
-        for i in range(1, 5):
+        for i in range(1, self.cards.len):
             if self.cards[i-1].value + 1 != self.cards[i].value:
                 return False
         return True
     
     def has_flush(self):
-        for i in range(1, 5):
+        for i in range(1, self.cards.len):
             if self.cards[i].suit != self.cards[0].suit:
                 return False
         return True
@@ -122,10 +132,10 @@ class FiveCardDraw:
         return self.has_pair() and self.has_three_of_a_kind()
     
     def has_four_of_a_kind(self):
-        for i in range(5):
-            for j in range(i+1, 5):
-                for k in range(j+1, 5):
-                    for l in range(k+1, 5):
+        for i in range(self.cards.len):
+            for j in range(i+1, self.cards.len):
+                for k in range(j+1, self.cards.len):
+                    for l in range(k+1, self.cards.len):
                         if self.cards[i].value == self.cards[j].value == self.cards[k].value == self.cards[l].value:
                             return True
         return False
@@ -157,33 +167,6 @@ class FiveCardDraw:
             return "Pair"
         else:
             return "High Card"
-
-class TexasHoldEm:
-    def __init__(self, deck):
-        self.cards = []
-        for i in range(2):
-            self.cards.append(deck.deal())
-    
-    def __str__(self):
-        return ", ".join([str(card) for card in self.cards])  
-    
-    table = []
-    def  __str__(table):
-        return ", ".join([str(card) for card in table])
-
-    def flop (deck, table):
-        deck.pop(len(deck) - 1),
-        for i in range(3):
-            table.append(deck.deal())
-
-    def turn (deck, table):
-        deck.pop(len(deck) - 1),
-        table.append(deck.deal())
-
-    def river (deck, table):
-        deck.pop(len(deck) - 1),
-        table.append(deck.deal())
-        
 
 
 def main(self):
