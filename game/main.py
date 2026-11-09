@@ -1,5 +1,6 @@
 from cards import Deck, Player
 from engine import GameEngine
+from bot import PokerBot
 
 communityCards = False
 dealerPlay = False
