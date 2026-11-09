@@ -2,7 +2,7 @@
 A terminal based poker game with multiple game variants supported, as well as a bot that analyzes game state and executes the optimal move.
 
 ## Implementation
-To use this, simply clone the repository, run the ```main.py``` file, and follow the prompts in the command line to use.
+To use this, simply clone the repository, run the ```main.py``` file, and follow the prompts in the command line.
 
 Clone repo:
 ```git clone https://github.com/LiamFCode/Poker.git```
